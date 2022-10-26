@@ -16,6 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from submissions.views import SubmissionViewSet
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('submissions/', SubmissionViewSet.as_view(), name='submissions')
 ]

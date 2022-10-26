@@ -25,16 +25,16 @@ def get_env_setting(var_name, default=False):
     try:
         return os.environ[var_name]
     except KeyError:
-        import StringIO
-        import ConfigParser
+        import io
+        import configparser
 
         env_file = os.environ.get('PROJECT_ENV_FILE', os.path.join(os.path.dirname(BASE_DIR), '.env'))
         try:
-            config = StringIO.StringIO()
+            config = io.StringIO()
             config.write("[DATA]\n")
             config.write(open(env_file).read())
             config.seek(0, os.SEEK_SET)
-            cp = ConfigParser.ConfigParser()
+            cp = configparser.ConfigParser()
             cp.readfp(config)
             value = dict(cp.items('DATA'))[var_name.lower()]
             if value.startswith('"') and value.endswith('"'):
