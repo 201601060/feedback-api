@@ -18,7 +18,14 @@ from django.urls import path
 
 from submissions.views import SubmissionViewSet
 
+submission_list = SubmissionViewSet.as_view(
+    {
+        'get': 'list',
+        'post': 'create'
+    }
+)
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('submissions/', SubmissionViewSet.as_view(), name='submissions')
+    path('api/submissions/', submission_list, name='submissions-list')
 ]

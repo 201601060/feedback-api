@@ -17,7 +17,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-def get_env_setting(var_name, default=False):
+def get_env_setting(var_name, default=None):
     """
     Get the environment variable or return exception
     :param var_name: Environment Variable to lookup
@@ -34,9 +34,9 @@ def get_env_setting(var_name, default=False):
             config.write("[DATA]\n")
             config.write(open(env_file).read())
             config.seek(0, os.SEEK_SET)
-            cp = configparser.ConfigParser()
-            cp.readfp(config)
-            value = dict(cp.items('DATA'))[var_name.lower()]
+            cp = configparser.ConfigParser(interpolation=None)
+            cp.read_file(config)
+            value = cp['DATA'][var_name]
             if value.startswith('"') and value.endswith('"'):
                 value = value[1:-1]
             elif value.startswith("'") and value.endswith("'"):
@@ -77,6 +77,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'corsheaders',
+    'django_json_widget',
 
     'jsoneditor',  # https://c9.io/nnseva/django-jsoneditor/
     'submissions'
@@ -90,6 +91,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'feedback.urls'
@@ -110,7 +112,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'feedback.wsgi.application'
+WSGI_APPLICATION = 'feedback.wsgi.local_application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
@@ -157,3 +159,11 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# CORS SETTINGS
+
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:4200',
+)
+
+# CORS SETTINGS
