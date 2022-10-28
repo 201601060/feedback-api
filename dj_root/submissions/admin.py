@@ -3,6 +3,7 @@ import logging
 
 from django.contrib import admin
 from django.db import models
+from django.forms import Textarea
 from django_json_widget.widgets import JSONEditorWidget
 
 from submissions.models import Submission
@@ -30,7 +31,8 @@ logger = logging.getLogger(__name__)
 class SubmissionAdmin(admin.ModelAdmin):
     list_display = ('id', 'comment')
     formfield_overrides = {
-        models.JSONField: {'widget': JSONEditorWidget}
+        models.JSONField: {'widget': JSONEditorWidget},
+        models.CharField: {'widget': Textarea}
     }
     pass
 
