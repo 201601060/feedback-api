@@ -1,1 +1,1 @@
-web: gunicorn feedback.wsgi:prod_application --pythonpath dj_root
+web: gunicorn feedback.wsgi:prod_application -b 0.0.0.0:$PORT --pythonpath dj_root

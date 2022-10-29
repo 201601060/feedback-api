@@ -1,4 +1,4 @@
-from local_settings import *
+from .local_settings import *
 
 # STANDARD DJANGO STUFF
 TEMPLATE_DEBUG = False
