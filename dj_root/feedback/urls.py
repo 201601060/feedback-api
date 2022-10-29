@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from submissions.views import SubmissionViewSet
+from submissions.views import SubmissionViewSet, Login
 
 submission_list = SubmissionViewSet.as_view(
     {
@@ -26,6 +26,7 @@ submission_list = SubmissionViewSet.as_view(
 )
 
 urlpatterns = [
+    path('api/login/', Login.as_view(), name='user-login'),
     path('admin/', admin.site.urls),
     path('api/submissions/', submission_list, name='submissions-list')
 ]
