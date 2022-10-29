@@ -1,17 +1,17 @@
 from local_settings import *
 
-########## STANDARD DJANGO STUFF
+# STANDARD DJANGO STUFF
 TEMPLATE_DEBUG = False
 WSGI_APPLICATION = 'www.wsgi.prod_application'
 
-#### !!!! SECURITY SECTION
+# !!!! SECURITY SECTION
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-#### !!!! END SECURITY SECTION
+# !!!! END SECURITY SECTION
 
-########## END STANDARD DJANGO STUFF
+# END STANDARD DJANGO STUFF
 
 
-########## STATIC FILE CONFIGURATION
+# STATIC FILE CONFIGURATION
 # From https://devcenter.heroku.com/articles/django-assets
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
@@ -23,4 +23,4 @@ STATICFILES_DIRS = (
 # https://warehouse.python.org/project/whitenoise/
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
-########## END STATIC FILE CONFIGURATION
+# END STATIC FILE CONFIGURATION
