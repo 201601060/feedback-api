@@ -17,7 +17,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-def get_env_setting(var_name, default=None):
+def get_env_setting(var_name, default = None):
     """
     Get the environment variable or return exception
     :param var_name: Environment Variable to lookup
