@@ -24,3 +24,11 @@ STATICFILES_DIRS = (
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 # END STATIC FILE CONFIGURATION
+
+# CORS SETTINGS
+
+CORS_ORIGIN_WHITELIST = (
+    'fbform.herokuapp.com',
+)
+
+# CORS SETTINGS
