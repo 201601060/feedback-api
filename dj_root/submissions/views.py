@@ -51,4 +51,4 @@ class SubmissionViewSet(viewsets.ModelViewSet):
         submission.save()
 
         submission_serialized = SubmissionSerializer(submission)
-        return Response(status=status.HTTP_200_OK, data=submission_serialized.data)
+        return Response(status=status.HTTP_200_OK, data=submission_serialized.data) 
